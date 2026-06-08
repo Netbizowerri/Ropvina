@@ -269,9 +269,18 @@ export default function BrandShowcase() {
 
                 {/* Content body (with view specs link fully removed) */}
                 <div className="p-6 pt-9 flex-1 flex flex-col justify-between space-y-4">
-                  <div className="space-y-2">
+                  <div className="space-y-5">
                     <h3 className="font-display font-semibold text-xl text-slate-100">
-                      {service.title}
+                      {service.title.split(' & ').length > 1 ? (
+                        <>
+                          {service.title.split(' & ')[0]} &{' '}
+                          <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-red via-orange-500 to-amber-500">
+                            {service.title.split(' & ')[1]}
+                          </span>
+                        </>
+                      ) : (
+                        service.title
+                      )}
                     </h3>
                     <p className="text-slate-100 text-xl md:text-2xl leading-relaxed">
                       {service.desc}
