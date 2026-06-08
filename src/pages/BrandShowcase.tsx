@@ -271,16 +271,29 @@ export default function BrandShowcase() {
                 <div className="p-6 pt-9 flex-1 flex flex-col justify-between space-y-4">
                   <div className="space-y-5">
                     <h3 className="font-display font-semibold text-xl text-slate-100">
-                      {service.title.split(' & ').length > 1 ? (
-                        <>
-                          {service.title.split(' & ')[0]} &{' '}
-                          <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-red via-orange-500 to-amber-500">
-                            {service.title.split(' & ')[1]}
-                          </span>
-                        </>
-                      ) : (
-                        service.title
-                      )}
+                      {(() => {
+                        const parts = service.title.split(' & ');
+                        if (parts.length > 1) {
+                          return (
+                            <>
+                              {parts[0]} &{' '}
+                              <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-red via-orange-500 to-amber-500">
+                                {parts[1]}
+                              </span>
+                            </>
+                          );
+                        }
+                        const lastSpace = service.title.lastIndexOf(' ');
+                        if (lastSpace === -1) return service.title;
+                        return (
+                          <>
+                            {service.title.slice(0, lastSpace)}{' '}
+                            <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-red via-orange-500 to-amber-500">
+                              {service.title.slice(lastSpace + 1)}
+                            </span>
+                          </>
+                        );
+                      })()}
                     </h3>
                     <p className="text-slate-100 text-xl md:text-2xl leading-relaxed">
                       {service.desc}
