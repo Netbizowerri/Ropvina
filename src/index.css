@@ -36,6 +36,13 @@
   .amber-glow {
     text-shadow: 0 0 15px rgba(245, 158, 11, 0.4);
   }
+
+  .gradient-text {
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    -webkit-background-clip: text;
+    background-image: linear-gradient(to right, var(--color-brand-red), #f97316, #f59e0b);
+  }
 }
 
 /* Radar Pulse / Ping Animations */
